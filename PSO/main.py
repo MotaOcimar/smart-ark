@@ -1,13 +1,20 @@
+from pso import ParticleSwarmOptimization
 
 
-def total_profit(cdi, ifix, sp500, ibov):
-    pass
+class Hyperparams:
+    def __init__(self):
+        self.num_particles = 50
+        self.inertia_weight = 0.9
+        self.cognitive_parameter = 0.6
+        self.social_parameter = 0.8
 
 
-def PSO(function, hyperparams):
-    best_global = []
-    return best_global
+hyperparams = Hyperparams()
+lower_bound = 0.0
+upper_bound = 1.0
+num_steps = 100
 
+pso = ParticleSwarmOptimization(hyperparams, lower_bound, upper_bound)
+pso.find_max(hyperparams, num_steps)
 
-hyperparams = None
-[cdi, ifix, sp500, ibov] = PSO(total_profit, hyperparams)
+[cdi, ifix, sp500, ibov] = pso.best_global_position
