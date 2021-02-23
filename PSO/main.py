@@ -1,4 +1,5 @@
 from pso import ParticleSwarmOptimization
+from data_manager import DataManager
 
 
 class Hyperparams:
@@ -10,11 +11,12 @@ class Hyperparams:
 
 
 hyperparams = Hyperparams()
+data_manager = DataManager()
 lower_bound = 0.0
 upper_bound = 1.0
 num_steps = 100
 
 pso = ParticleSwarmOptimization(hyperparams, lower_bound, upper_bound)
-pso.find_max(hyperparams, num_steps)
+pso.find_max(data_manager.calculate_total_profit, num_steps)
 
 [cdi, ifix, sp500, ibov] = pso.best_global_position
