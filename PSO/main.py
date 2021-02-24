@@ -22,4 +22,10 @@ pso.find_max(data_manager.calculate_total_profit, num_steps)
 
 [cdi, ifix, ibov] = pso.best_global_position
 
-print(cdi, ifix, ibov, 1 - (cdi + ifix + ibov))
+print("Arca ideal: ")
+print("CDI: ", cdi, "IFIX: ", ifix, "IBOV: ", ibov, "S&P500: ", 1 - (cdi + ifix + ibov))
+print("Lucro arca ideal:", pso.best_global_value - 1)
+print("Lucros individuais:")
+print(data_manager.monthly_profit.product() - 1)
+print("Lucro arca 25%:")
+print(data_manager.monthly_profit.dot([0.25, 0.25, 0.25, 0.25]).product() - 1)
