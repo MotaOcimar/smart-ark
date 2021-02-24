@@ -24,7 +24,8 @@ def import_data():
     ibov_data = pd.read_csv("../Dados/IBOVESPA.csv")
     sp500_usd_data = pd.read_csv("../Dados/SP500_dolar.csv")
     usd_data = pd.read_csv("../Dados/USD_BRL.csv")
-    sp500_data = [a*b for a, b in zip(sp500_usd_data.Close, usd_data.Close)]
+    sp500_data = [a*b for a, b in zip(sp500_usd_data.Valor, usd_data.Valor)]
+    # sp500_data = sp500_usd_data  # Without convert (wrong approach, just for visualization)
 
     cdi_monthly_profit = (cdi_data.Valor/100 + 1)**(1/12)
     ifix_monthly_profit = calculate_monthly_profit(ifix_data)
