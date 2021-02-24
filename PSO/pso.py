@@ -84,9 +84,9 @@ class ParticleSwarmOptimization:
                     particle.position[i] = self.lower_bound[i]
                     particle.velocity[i] = -particle.velocity[i]
 
-    def evaluate_particles(self, function):
+    def evaluate_particles(self, function, additional_args=None):
         for particle in self.particles:
-            value = function(particle.position)
+            value = function(particle.position, additional_args)
 
             if value > particle.best_value:
                 particle.best_value = value
@@ -96,7 +96,7 @@ class ParticleSwarmOptimization:
                 self.best_global_value = value
                 self.best_global_position = particle.position
 
-    def find_max(self, function, num_steps):
+    def find_max(self, function, num_steps, additional_args=None):
         for _ in range(num_steps):
-            self.evaluate_particles(function)
+            self.evaluate_particles(function, additional_args)
             self.update_particles()
